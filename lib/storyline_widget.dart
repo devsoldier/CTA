@@ -1,11 +1,19 @@
-import 'dart:convert';
+// import 'dart:convert';
+import 'package:cta/user_detail.dart';
 import './provider.dart';
 import 'package:provider/provider.dart';
 // import 'package:cta/dataset.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 class StorylineWidget extends StatefulWidget {
+  // final String user;
+  // final String phone;
+  // final DateTime checkin;
+
+  // const StorylineWidget(this.user, this.phone, this.checkin);
+
   @override
   State<StorylineWidget> createState() => _StorylineWidgetState();
 }
@@ -35,15 +43,21 @@ class _StorylineWidgetState extends State<StorylineWidget> {
             itemCount: data.content.length,
             itemBuilder: (context, index) {
               return Card(
-                child: ListTile(
-                  leading: Text(
-                    data.content[index]['user'],
-                  ),
-                  title: Text(
-                    data.content[index]['phone'],
-                  ),
-                  subtitle: Text(
-                    '${data.datecontent[index]}',
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(UserDetail.routeName,
+                        arguments: data.content[index]);
+                  },
+                  child: ListTile(
+                    leading: Text(
+                      data.content[index].user,
+                    ),
+                    title: Text(
+                      data.content[index].phone,
+                    ),
+                    subtitle: Text(
+                      '${DateFormat('d MMM Y hh:mm a').format(data.content[index].checkin)}',
+                    ),
                   ),
                 ),
               );
