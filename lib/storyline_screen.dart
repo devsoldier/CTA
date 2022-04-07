@@ -73,7 +73,7 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
         body: Stack(
           children: [
             Positioned(
-                top: MediaQuery.of(context).size.width * 0.1,
+                // top: MediaQuery.of(context).size.width * 0.1,
                 left: MediaQuery.of(context).size.width * 0.1,
                 child: StorylineWidget())
           ],
