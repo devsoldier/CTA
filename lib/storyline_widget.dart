@@ -56,14 +56,14 @@ class _StorylineWidgetState extends State<StorylineWidget> {
                       data.content[index].phone,
                     ),
                     subtitle: Text(
-                      '${DateFormat('d MMM Y hh:mm a').format(data.content[index].checkin)}',
+                      '${DateFormat('d MMM y hh:mm a').format(data.content[index].checkin)}',
                     ),
                   ),
                 ),
               );
             },
           ),
-        )
+        ),
       ],
     );
   }

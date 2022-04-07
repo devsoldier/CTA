@@ -5,6 +5,7 @@ import './dataset.dart';
 
 class DataProvider with ChangeNotifier {
   List<DataSet> content = [];
+  List<String> message = [];
 
   Future<void> readJsonData() async {
     final jsondata = await rootBundle.loadString('assets/dataset.json');
@@ -22,11 +23,12 @@ class DataProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  List<DataSet> get contents {
-    return [...content];
-  }
-
-  DataSet findbyId(String user) {
-    return content.firstWhere((use) => use.user == user);
+  Future<void> addUser(
+      String name, String phonenumber, DateTime newcheckin) async {
+    message.clear();
+    content.insert(
+        0, DataSet(user: name, phone: phonenumber, checkin: newcheckin));
+    message.insert(0, 'Successfully added');
+    notifyListeners();
   }
 }
