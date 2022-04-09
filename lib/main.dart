@@ -1,4 +1,5 @@
 import 'package:cta/provider.dart';
+import 'package:cta/sprite.dart';
 import 'package:cta/user_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: StoryLineScreen(),
+        // home: FlimSprite(),
         routes: {
           StoryLineScreen.routeName: (ctx) => StoryLineScreen(),
           UserDetail.routeName: (ctx) => UserDetail(),

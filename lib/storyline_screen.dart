@@ -1,5 +1,7 @@
 import 'package:cta/dataset.dart';
 import 'package:cta/provider.dart';
+import 'package:cta/sprite.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import './storyline_widget.dart';
@@ -67,69 +69,72 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Technical Assessment'),
-        ),
-        body: Stack(
-          children: [
-            Positioned(
-                // top: MediaQuery.of(context).size.width * 0.1,
-                left: MediaQuery.of(context).size.width * 0.1,
-                child: StorylineWidget())
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            showModalBottomSheet(
-                context: context,
-                builder: (bCtx) {
-                  return Container(
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          TextFormField(
-                              decoration: InputDecoration(labelText: 'Name'),
-                              controller: _namecontroller,
-                              focusNode: _namefield,
-                              validator: (value) {
-                                if (value!.isEmpty) return 'enter name';
-                              },
-                              onFieldSubmitted: (value) {
-                                name = value;
-                              }),
-                          TextFormField(
-                              keyboardType: TextInputType.number,
-                              decoration:
-                                  InputDecoration(labelText: 'phone number'),
-                              controller: _phonecontroller,
-                              focusNode: _phonefield,
-                              validator: (value) {
-                                if (value!.isEmpty) return 'enter phone number';
-                              },
-                              onFieldSubmitted: (value) {
-                                phone = value.toString();
-                              }),
-                          TextButton(
-                            onPressed: _presentDatePicker,
-                            child: Text('Pick date'),
-                          ),
-                          TextButton(
-                            onPressed: () async {
-                              await addNewUser();
-                              Navigator.of(bCtx).pop();
-                              showsnackbar();
+      appBar: AppBar(
+        title: Text('Technical Assessment'),
+      ),
+      body: Stack(
+        children: [
+          Positioned(
+            left: MediaQuery.of(context).size.width * 0.1,
+            child: StorylineWidget(),
+          ),
+          FlimSprite(),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (bCtx) {
+                return Container(
+                  height: MediaQuery.of(context).size.height * 0.4,
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            decoration: InputDecoration(labelText: 'Name'),
+                            controller: _namecontroller,
+                            focusNode: _namefield,
+                            validator: (value) {
+                              if (value!.isEmpty) return 'enter name';
                             },
-                            child: Text('submit'),
-                          ),
-                        ],
-                      ),
+                            onFieldSubmitted: (value) {
+                              name = value;
+                            }),
+                        TextFormField(
+                            keyboardType: TextInputType.number,
+                            decoration:
+                                InputDecoration(labelText: 'phone number'),
+                            controller: _phonecontroller,
+                            focusNode: _phonefield,
+                            validator: (value) {
+                              if (value!.isEmpty) return 'enter phone number';
+                            },
+                            onFieldSubmitted: (value) {
+                              phone = value.toString();
+                            }),
+                        TextButton(
+                          onPressed: _presentDatePicker,
+                          child: Text('Pick date'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await addNewUser();
+                            Navigator.of(bCtx).pop();
+                            showsnackbar();
+                          },
+                          child: Text('submit'),
+                        ),
+                      ],
                     ),
-                  );
-                });
-          },
-        ));
+                  ),
+                );
+              });
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+    );
   }
 }

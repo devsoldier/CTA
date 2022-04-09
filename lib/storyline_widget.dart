@@ -55,10 +55,11 @@ class _StorylineWidgetState extends State<StorylineWidget> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width: 150,
-              height: 50,
+              width: 180,
+              height: 60,
               child: TextField(
                   focusNode: searchfield,
                   controller: controller,
@@ -76,27 +77,37 @@ class _StorylineWidgetState extends State<StorylineWidget> {
                     });
                   }),
             ),
+            // SizedBox(width: 20),
             Container(
-              width: 100,
-              height: 50,
-              child: DropdownButtonHideUnderline(
-                child: DropdownButton(
-                  isExpanded: true,
-                  value: _selectedsort,
-                  onChanged: (newval) {
-                    setState(() {
-                      _selectedsort = newval as String;
-                      // getData();
-                      sortdates(_selectedsort);
-                    });
-                  },
-                  elevation: 16,
-                  items: sortfilters.map((newval) {
-                    return DropdownMenuItem(
-                      value: newval,
-                      child: Text(newval),
-                    );
-                  }).toList(),
+              width: 130,
+              height: 60,
+              child: InputDecorator(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: const BorderRadius.all(
+                      const Radius.circular(20.0),
+                    ),
+                  ),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton(
+                    isExpanded: true,
+                    value: _selectedsort,
+                    onChanged: (newval) {
+                      setState(() {
+                        _selectedsort = newval as String;
+                        // getData();
+                        sortdates(_selectedsort);
+                      });
+                    },
+                    elevation: 16,
+                    items: sortfilters.map((newval) {
+                      return DropdownMenuItem(
+                        value: newval,
+                        child: Text(newval),
+                      );
+                    }).toList(),
+                  ),
                 ),
               ),
             ),
