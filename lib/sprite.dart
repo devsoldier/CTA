@@ -6,6 +6,8 @@ final imageAssetCache = ImageAssetCache(basePath: "assets/images/");
 final jsonAssetCache = JsonAssetCache(basePath: "assets/");
 
 class FlimSprite extends StatefulWidget {
+  const FlimSprite({Key? key}) : super(key: key);
+
   @override
   State<FlimSprite> createState() => _FlimSpriteState();
 }
@@ -31,7 +33,7 @@ class _FlimSpriteState extends State<FlimSprite> {
                 frameDuration: 0.04,
                 color: Colors.transparent,
                 transform: Transform2D(
-                  translate: Offset(0, 0),
+                  translate: const Offset(0, 0),
                 ),
               ).loadImages(imageAssetCache),
               builder: (context, snapshot) {

@@ -26,10 +26,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: IntroductionPage(),
+        home: const IntroductionPage(),
         routes: {
-          StoryLineScreen.routeName: (ctx) => StoryLineScreen(),
-          UserDetail.routeName: (ctx) => UserDetail(),
+          StoryLineScreen.routeName: (ctx) => const StoryLineScreen(),
+          UserDetail.routeName: (ctx) => const UserDetail(),
         },
       ),
     );

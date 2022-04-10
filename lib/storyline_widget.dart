@@ -1,13 +1,12 @@
-// import 'dart:convert';
 import 'package:cta/user_detail.dart';
 import './provider.dart';
 import 'package:provider/provider.dart';
-// import 'package:cta/dataset.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class StorylineWidget extends StatefulWidget {
+  const StorylineWidget({Key? key}) : super(key: key);
+
   @override
   State<StorylineWidget> createState() => _StorylineWidgetState();
 }
@@ -51,7 +50,7 @@ class _StorylineWidgetState extends State<StorylineWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
+            SizedBox(
               width: 180,
               height: 60,
               child: TextField(
@@ -72,14 +71,14 @@ class _StorylineWidgetState extends State<StorylineWidget> {
                   }),
             ),
             // SizedBox(width: 20),
-            Container(
+            SizedBox(
               width: 130,
               height: 60,
               child: InputDecorator(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(
-                      const Radius.circular(20.0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.0),
                     ),
                   ),
                 ),
@@ -108,7 +107,7 @@ class _StorylineWidgetState extends State<StorylineWidget> {
           ],
         ),
         (searchfield.hasPrimaryFocus && controller.text.isNotEmpty)
-            ? Container(
+            ? SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: ListView.builder(
@@ -128,7 +127,8 @@ class _StorylineWidgetState extends State<StorylineWidget> {
                             data.searchoutput[index].phone,
                           ),
                           subtitle: Text(
-                            '${DateFormat('d MMM y hh:mm a').format(data.searchoutput[index].checkin)}',
+                            DateFormat('d MMM y hh:mm a')
+                                .format(data.searchoutput[index].checkin),
                           ),
                         ),
                       ),
@@ -136,7 +136,7 @@ class _StorylineWidgetState extends State<StorylineWidget> {
                   },
                 ),
               )
-            : Container(
+            : SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: ListView.builder(
@@ -156,7 +156,8 @@ class _StorylineWidgetState extends State<StorylineWidget> {
                             data.filtered[index].phone,
                           ),
                           subtitle: Text(
-                            '${DateFormat('d MMM y hh:mm a').format(data.filtered[index].checkin)}',
+                            DateFormat('d MMM y hh:mm a')
+                                .format(data.filtered[index].checkin),
                           ),
                         ),
                       ),

@@ -4,12 +4,14 @@ import 'package:flutter_overboard/flutter_overboard.dart';
 import 'package:lottie/lottie.dart';
 
 class IntroductionPage extends StatefulWidget {
+  const IntroductionPage({Key? key}) : super(key: key);
+
   @override
   State<IntroductionPage> createState() => _IntroductionPageState();
 }
 
 class _IntroductionPageState extends State<IntroductionPage> {
-  final GlobalKey<ScaffoldState> _globalKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
   final pages = [
     PageModel.withChild(
         child: Center(
@@ -17,7 +19,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             children: [
               Container(
                   child: Lottie.asset('assets/lottie/100925-contact.json')),
-              Text(
+              const Text(
                 'Welcome!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -27,13 +29,13 @@ class _IntroductionPageState extends State<IntroductionPage> {
             ],
           ),
         ),
-        color: Color.fromARGB(255, 180, 224, 228),
+        color: const Color.fromARGB(255, 180, 224, 228),
         doAnimateChild: true),
     PageModel.withChild(
         child: Center(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                   width: 500,
                   height: 500,
                   child:
@@ -65,7 +67,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                     color: Colors.white),
               ),
               const Text(
-                'press the ' + ' symbol on the left corner to add contacts',
+                'press the  "+"  symbol on the bottom left to add contacts',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -118,9 +120,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
         showBullets: true,
         inactiveBulletColor: Colors.blue,
         skipCallback: () {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text("Skip clicked"),
-          ));
+          Navigator.of(context).pushReplacementNamed(StoryLineScreen.routeName);
         },
         finishCallback: () {
           Navigator.of(context).pushReplacementNamed(StoryLineScreen.routeName);

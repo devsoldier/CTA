@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 class StoryLineScreen extends StatefulWidget {
   static const routeName = '/storyline';
 
+  const StoryLineScreen({Key? key}) : super(key: key);
+
   @override
   State<StoryLineScreen> createState() => _StoryLineScreenState();
 }
@@ -21,8 +23,8 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _phonecontroller = TextEditingController();
 
-  FocusNode _namefield = FocusNode();
-  FocusNode _phonefield = FocusNode();
+  final FocusNode _namefield = FocusNode();
+  final FocusNode _phonefield = FocusNode();
 
   Future<void> _presentDatePicker() async {
     showDatePicker(
@@ -65,10 +67,10 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
     final snackBar = SnackBar(
       content: Consumer<DataProvider>(
           builder: (_, data, __) => (data.message[0].isEmpty)
-              ? Text('')
+              ? const Text('')
               : (data.message[0].isNotEmpty)
                   ? Text(data.message[0])
-                  : Text('')),
+                  : const Text('')),
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -79,7 +81,7 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Technical Assessment'),
+        title: const Text('Technical Assessment'),
       ),
       body: GestureDetector(
         onTap: () {
@@ -89,26 +91,27 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
           children: [
             Positioned(
               left: MediaQuery.of(context).size.width * 0.1,
-              child: StorylineWidget(),
+              child: const StorylineWidget(),
             ),
-            FlimSprite(),
+            const FlimSprite(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           showModalBottomSheet(
               context: context,
               builder: (bCtx) {
-                return Container(
+                return SizedBox(
                   height: MediaQuery.of(context).size.height * 0.4,
                   child: Form(
                     key: _formKey,
                     child: Column(
                       children: [
                         TextFormField(
-                            decoration: InputDecoration(labelText: 'Name'),
+                            decoration:
+                                const InputDecoration(labelText: 'Name'),
                             controller: _namecontroller,
                             focusNode: _namefield,
                             validator: (value) {
@@ -119,8 +122,8 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
                             }),
                         TextFormField(
                             keyboardType: TextInputType.number,
-                            decoration:
-                                InputDecoration(labelText: 'phone number'),
+                            decoration: const InputDecoration(
+                                labelText: 'phone number'),
                             controller: _phonecontroller,
                             focusNode: _phonefield,
                             validator: (value) {
@@ -135,7 +138,7 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
                             await _presentDatePicker()
                                 .then((_) => _presentTimePicker());
                           },
-                          child: Text('Pick date'),
+                          child: const Text('Pick date'),
                         ),
                         TextButton(
                           onPressed: () async {
@@ -143,7 +146,7 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
                             Navigator.of(bCtx).pop();
                             showsnackbar();
                           },
-                          child: Text('submit'),
+                          child: const Text('submit'),
                         ),
                       ],
                     ),
