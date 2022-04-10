@@ -106,65 +106,44 @@ class _StorylineWidgetState extends State<StorylineWidget> {
             ),
           ],
         ),
-        (searchfield.hasPrimaryFocus && controller.text.isNotEmpty)
-            ? SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.8,
-                child: ListView.builder(
-                  itemCount: data.searchoutput.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(UserDetail.routeName,
-                              arguments: data.searchoutput[index]);
-                        },
-                        child: ListTile(
-                          leading: Text(
-                            data.searchoutput[index].user,
-                          ),
-                          title: Text(
-                            data.searchoutput[index].phone,
-                          ),
-                          subtitle: Text(
-                            DateFormat('d MMM y hh:mm a')
-                                .format(data.searchoutput[index].checkin),
-                          ),
-                        ),
-                      ),
-                    );
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: ListView.builder(
+            itemCount:
+                (searchfield.hasPrimaryFocus && controller.text.isNotEmpty)
+                    ? data.searchoutput.length
+                    : data.content.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(UserDetail.routeName,
+                        arguments: data.searchoutput[index]);
                   },
+                  child: ListTile(
+                    leading: Text(
+                      (searchfield.hasPrimaryFocus &&
+                              controller.text.isNotEmpty)
+                          ? data.searchoutput[index].user
+                          : data.content[index].user,
+                    ),
+                    title: Text((searchfield.hasPrimaryFocus &&
+                            controller.text.isNotEmpty)
+                        ? data.searchoutput[index].phone
+                        : data.content[index].phone),
+                    subtitle: Text((searchfield.hasPrimaryFocus &&
+                            controller.text.isNotEmpty)
+                        ? DateFormat('d MMM y hh:mm a')
+                            .format(data.searchoutput[index].checkin)
+                        : DateFormat('d MMM y hh:mm a')
+                            .format(data.content[index].checkin)),
+                  ),
                 ),
-              )
-            : SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.8,
-                child: ListView.builder(
-                  itemCount: data.content.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(UserDetail.routeName,
-                              arguments: data.filtered[index]);
-                        },
-                        child: ListTile(
-                          leading: Text(
-                            data.filtered[index].user,
-                          ),
-                          title: Text(
-                            data.filtered[index].phone,
-                          ),
-                          subtitle: Text(
-                            DateFormat('d MMM y hh:mm a')
-                                .format(data.filtered[index].checkin),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              );
+            },
+          ),
+        )
       ],
     );
   }
