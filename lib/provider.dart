@@ -54,8 +54,9 @@ class DataProvider with ChangeNotifier {
   Future<void> searchlist(String query) async {
     suggestions = content.where((user) {
       final username = user.user.toLowerCase();
+      final userphone = user.phone.toLowerCase();
       final input = query.toLowerCase();
-      return username.contains(input);
+      return username.contains(input) || userphone.contains(input);
     }).toList();
     searchoutput = suggestions;
     notifyListeners();

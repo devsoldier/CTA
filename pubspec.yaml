@@ -36,10 +36,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  animated_splash_screen: ^1.2.0
-  spritewidget: ^0.9.24
-  flame: ^1.0.0
   flim: ^1.0.0
+  flutter_overboard: ^3.1.1
+  lottie: ^1.2.2
 
 
 dev_dependencies:
@@ -69,6 +68,10 @@ flutter:
     - assets/
     - assets/images/animation.png
     - assets/animation.json
+    - assets/lottie/100925-contact.json
+    - assets/images/Screenshot_1649498099.png
+    - assets/lottie/11859-add.json
+    - assets/lottie/search_lottie.json
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

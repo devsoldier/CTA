@@ -1,11 +1,7 @@
-import 'package:cta/dataset.dart';
 import 'package:cta/provider.dart';
 import 'package:cta/sprite.dart';
-import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import './storyline_widget.dart';
-// import './provider.dart';
 import 'package:provider/provider.dart';
 
 class StoryLineScreen extends StatefulWidget {
@@ -18,7 +14,7 @@ class StoryLineScreen extends StatefulWidget {
 class _StoryLineScreenState extends State<StoryLineScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  late DateTime selectedDate;
+  List<DateTime> selectedDateTime = [];
   late String name;
   late String phone;
 
@@ -27,7 +23,8 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
 
   FocusNode _namefield = FocusNode();
   FocusNode _phonefield = FocusNode();
-  void _presentDatePicker() {
+
+  Future<void> _presentDatePicker() async {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -37,9 +34,21 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
       if (pickedDate == null) {
         return;
       }
-      setState(() {
-        selectedDate = pickedDate;
-      });
+
+      selectedDateTime.insert(0, pickedDate);
+    });
+  }
+
+  Future<void> _presentTimePicker() async {
+    showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    ).then((pickedTime) {
+      if (pickedTime == null) {
+        return;
+      }
+
+      selectedDateTime.insert(0, DateTime.parse(pickedTime.toString()));
     });
   }
 
@@ -49,7 +58,7 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
     }
     _formKey.currentState!.save();
     await Provider.of<DataProvider>(context, listen: false)
-        .addUser(name, phone, selectedDate);
+        .addUser(name, phone, selectedDateTime[0]);
   }
 
   showsnackbar() {
@@ -72,14 +81,19 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
       appBar: AppBar(
         title: Text('Technical Assessment'),
       ),
-      body: Stack(
-        children: [
-          Positioned(
-            left: MediaQuery.of(context).size.width * 0.1,
-            child: StorylineWidget(),
-          ),
-          FlimSprite(),
-        ],
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(null);
+        },
+        child: Stack(
+          children: [
+            Positioned(
+              left: MediaQuery.of(context).size.width * 0.1,
+              child: StorylineWidget(),
+            ),
+            FlimSprite(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -111,12 +125,16 @@ class _StoryLineScreenState extends State<StoryLineScreen> {
                             focusNode: _phonefield,
                             validator: (value) {
                               if (value!.isEmpty) return 'enter phone number';
+                              if (value.length < 7) return 'add more';
                             },
                             onFieldSubmitted: (value) {
                               phone = value.toString();
                             }),
                         TextButton(
-                          onPressed: _presentDatePicker,
+                          onPressed: () async {
+                            await _presentDatePicker()
+                                .then((_) => _presentTimePicker());
+                          },
                           child: Text('Pick date'),
                         ),
                         TextButton(

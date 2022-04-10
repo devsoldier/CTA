@@ -113,7 +113,7 @@ class _StorylineWidgetState extends State<StorylineWidget> {
             ),
           ],
         ),
-        (searchfield.hasPrimaryFocus)
+        (searchfield.hasPrimaryFocus && controller.text.isNotEmpty)
             ? Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 height: MediaQuery.of(context).size.height * 0.8,
