@@ -38,7 +38,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   height: 500,
                   child:
                       Image.asset('assets/images/Screenshot_1649498099.png')),
-              Text(
+              const Text(
                 'View contacts',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             ],
           ),
         ),
-        color: Color.fromARGB(255, 100, 166, 237),
+        color: const Color.fromARGB(255, 100, 166, 237),
         doAnimateChild: true),
     PageModel.withChild(
         child: Center(
@@ -57,14 +57,14 @@ class _IntroductionPageState extends State<IntroductionPage> {
               Container(
                 child: Lottie.asset('assets/lottie/11859-add.json'),
               ),
-              Text(
+              const Text(
                 'Add Contacts!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 35,
                     color: Colors.white),
               ),
-              Text(
+              const Text(
                 'press the ' + ' symbol on the left corner to add contacts',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             ],
           ),
         ),
-        color: Color.fromARGB(255, 139, 201, 223),
+        color: const Color.fromARGB(255, 139, 201, 223),
         doAnimateChild: true),
     PageModel.withChild(
         child: Center(
@@ -84,17 +84,17 @@ class _IntroductionPageState extends State<IntroductionPage> {
               Container(
                 child: Lottie.asset('assets/lottie/search_lottie.json'),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
-              Text(
+              const Text(
                 'Search Contacts!',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 35,
                     color: Colors.white),
               ),
-              Text(
+              const Text(
                 'enter contact\'s name or phone number',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -104,7 +104,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
             ],
           ),
         ),
-        color: Color.fromARGB(255, 139, 201, 223),
+        color: const Color.fromARGB(255, 139, 201, 223),
         doAnimateChild: true),
   ];
 
@@ -118,7 +118,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
         showBullets: true,
         inactiveBulletColor: Colors.blue,
         skipCallback: () {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Skip clicked"),
           ));
         },

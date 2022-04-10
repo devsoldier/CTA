@@ -21,7 +21,7 @@ class UserDetail extends StatelessWidget {
         children: [
           Text(args.user),
           Text(args.phone),
-          Text('${DateFormat('d MMM Y hh:mm a').format(args.checkin)}'),
+          Text(DateFormat('d MMM Y hh:mm a').format(args.checkin)),
         ],
       )),
     );

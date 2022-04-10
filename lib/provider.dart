@@ -11,7 +11,6 @@ class DataProvider with ChangeNotifier {
   late dynamic suggestions;
 
   Future<void> readJsonData() async {
-    // content.clear();
     final jsondata = await rootBundle.loadString('assets/dataset.json');
     final list = json.decode(jsondata) as List<dynamic>;
     List dateconverted = [];

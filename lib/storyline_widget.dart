@@ -8,12 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class StorylineWidget extends StatefulWidget {
-  // final String user;
-  // final String phone;
-  // final DateTime checkin;
-
-  // const StorylineWidget(this.user, this.phone, this.checkin);
-
   @override
   State<StorylineWidget> createState() => _StorylineWidgetState();
 }

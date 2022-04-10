@@ -1,6 +1,5 @@
 import 'package:cta/introduction.dart';
 import 'package:cta/provider.dart';
-import 'package:cta/sprite.dart';
 import 'package:cta/user_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +13,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -29,7 +27,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: IntroductionPage(),
-        // home: StoryLineScreen(),
         routes: {
           StoryLineScreen.routeName: (ctx) => StoryLineScreen(),
           UserDetail.routeName: (ctx) => UserDetail(),
